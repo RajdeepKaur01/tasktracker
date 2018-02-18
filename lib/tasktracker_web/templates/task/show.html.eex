@@ -1,0 +1,42 @@
+<h2>Task Details</h2>
+
+<ul>
+
+  <li>
+    <strong>Created By:</strong>
+    <%= @task.user.name %>
+  </li>
+  <br>
+  <li>
+    <strong>Title:</strong>
+    <%= @task.title %>
+  </li>
+  <br>
+  <li>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </li>
+  <br>
+  <li>
+    <strong>Assigned to:</strong>
+    <%= @task.assigned_to %>
+  </li>
+  <br>
+  <li>
+    <strong>Time Worked on Task:</strong>
+    <%= @task.worktime %> Minutes
+    (<%= div(@task.worktime,60) %> hrs: <%= rem(@task.worktime,60) %>minutes)
+  </li>
+  <br>
+  <li>
+    <%= if @task.complete do %>
+      <strong>Status: </strong> Completed
+    <% else %>
+      <strong>Status: </strong> Not Completed
+    <% end %>
+  </li>
+  <br>
+</ul>
+
+<span><%= link "Edit", to: task_path(@conn, :edit, @task) %></span>
+<span><%= link "Back", to: task_path(@conn, :index) %></span>
