@@ -7,15 +7,15 @@
 <% end %>
 <h2>Listing Tasks</h2>
 
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
-      <th class="col-md-2">Title</th>
-      <th class="col-md-3">Description</th>
-      <th class="col-md-1">AssignedTo</th>
-      <th class="col-md-1">Worktime(HH:mm)</th>
-      <th class="col-md-2">Completed</th>
-      <th class="col-md-3"></th>
+      <th class="width2">Title</th>
+      <th class="width3">Description</th>
+      <th class="width1">AssignedTo</th>
+      <th class="width1">Worktime(HH:mm)</th>
+      <th class="width2">Completed</th>
+      <th class="width3"></th>
     </tr>
   </thead>
   <tbody>
