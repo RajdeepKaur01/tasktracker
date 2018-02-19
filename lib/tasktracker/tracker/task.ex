@@ -20,6 +20,8 @@ defmodule Tasktracker.Tracker.Task do
   def changeset(%Task{} = task, attrs) do
     task
     |> cast(attrs, [:user_id, :title, :description, :assigned_to, :worktime, :complete])
-    |> validate_required([:user_id, :title, :description, :assigned_to, :worktime, :complete])
+    |> validate_required([:user_id,:title, :description, :assigned_to, :worktime, :complete])
+    |> foreign_key_constraint(:user_id)
+
   end
 end

@@ -1,5 +1,14 @@
 # Tasktracker
 
+Assumptions:
+1. If User is Deleted,tasks created by that user will not be deleted. user_id in task will be set to null. On tasks show page, Created By will be displayed as "Deleted User" for such tasks.
+
+2. Since User name can be same , AssignedTo Dropdown for tasks will refer to unique email of all users. Email has unique constraint.
+
+3. If user is deleted , Assigned_To Field for tasks assigned to that user will be displayed as "Reassign(User Deleted)" on task index page and show Page.
+
+4. If a user tries to visit tasks index page without login, he will be able to see existing tasks, but will not see options to create, modify or delete tasks.
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`

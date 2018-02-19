@@ -1,6 +1,6 @@
 <%= if @current_user do %>
-  <span><%= button "New Task", to: task_path(@conn, :new), method: "get", class: "btn btn-primary" %></span>
-  <br><br>
+<span><%= button "New Task", to: task_path(@conn, :new), method: "get", class: "btn btn-primary" %></span>
+<br><br>
 <% else %>
 <span><%= button "Login", to: page_path(@conn, :index), method: "get", class: "btn btn-primary" %></span>
 <br><br>
@@ -19,27 +19,42 @@
     </tr>
   </thead>
   <tbody>
-<%= for task <- @tasks do %>
+    <%= for task <- @tasks do %>
     <tr>
       <td><%= task.title %></td>
       <td><%= task.description %></td>
+      <%= if Tasktracker.Accounts.get_user_by_email(task.assigned_to) do %>
       <td><%= task.assigned_to %></td>
-      <td><%= div(task.worktime,60) %> : <%= rem(task.worktime,60) %></td>
-      <td>
-      <%= if task.complete do %>
-      <div class="bg-success text-white">Completed</div>
       <% else %>
-      <div class="bg-danger text-white">Not Completed</div>
+      <td class="error">Reassign (User Deleted)</td>
       <% end %>
+      <td>
+        <%= if div(task.worktime,60)<10 do
+          "0"<>Integer.to_string(div(task.worktime,60))
+        else
+          div(task.worktime,60)
+        end%>
+        <%= if rem(task.worktime,60)<10 do
+          ": 0"<>Integer.to_string(rem(task.worktime,60))
+        else
+          ": "<>Integer.to_string(rem(task.worktime,60))
+        end%>
       </td>
-<%= if @current_user do %>
+      <td>
+        <%= if task.complete do %>
+        <div class="bg-success text-white">Completed</div>
+        <% else %>
+        <div class="bg-danger text-white">Not Completed</div>
+        <% end %>
+      </td>
+      <%= if @current_user do %>
       <td class="text-right">
         <span><%= link "Show", to: task_path(@conn, :show, task), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Edit", to: task_path(@conn, :edit, task), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete", to: task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
-<% end %>
+      <% end %>
     </tr>
-<% end %>
+    <% end %>
   </tbody>
 </table>
