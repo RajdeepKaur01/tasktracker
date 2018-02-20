@@ -1,11 +1,13 @@
 <%= if @current_user do %>
 <span><%= button "New Task", to: task_path(@conn, :new), method: "get", class: "btn btn-primary" %></span>
 <span><%= button "Account Details", to: user_path(@conn, :show, @current_user), method: "get", class: "btn btn-primary" %></span>
-<br><br>
 <% else %>
 <span><%= button "Login", to: page_path(@conn, :index), method: "get", class: "btn btn-primary" %></span>
-<br><br>
 <% end %>
+<%= if @current_user.email=="admin@gmail.com" do %>
+<span><%= button "View Users", to: user_path(@conn, :index), method: "get", class: "btn btn-primary" %></span>
+<% end %>
+<br><br>
 <h2>Listing Tasks</h2>
 
 <table class="table table-striped">

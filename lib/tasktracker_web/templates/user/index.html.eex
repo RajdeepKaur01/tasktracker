@@ -1,8 +1,11 @@
+
+<%= if !(@current_user==nil) and  @current_user.email=="admin@gmail.com" do %>
 <h2>Listing Users</h2>
 
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
+      <th>User ID</th>
       <th>Email</th>
       <th>Name</th>
 
@@ -12,12 +15,11 @@
   <tbody>
 <%= for user <- @users do %>
     <tr>
+      <td><%= user.id %></td>
       <td><%= user.email %></td>
       <td><%= user.name %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
@@ -25,4 +27,8 @@
   </tbody>
 </table>
 
-<span><%= link "New User", to: user_path(@conn, :new) %></span>
+<span><%= link "Back", to: task_path(@conn, :index) %></span>
+<% else %>
+<span>Admin Login required</span><br><br>
+<span><%= button "Login", to: page_path(@conn, :index), method: "get", class: "btn btn-primary" %></span>
+<% end %>

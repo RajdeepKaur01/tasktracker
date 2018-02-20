@@ -9,6 +9,8 @@ Assumptions:
 
 4. If a user tries to visit tasks index page without login, he will be able to see existing tasks, but will not see options to create, modify or delete tasks.
 
+5. If user logins with email "admin@gmail.com" , he will see additional button to list all users. Admin can view all users and delete any user.
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
