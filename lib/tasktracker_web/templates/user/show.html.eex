@@ -1,4 +1,4 @@
-<h2>Show User</h2>
+<h2>Account Details</h2><br>
 
 <ul>
 
@@ -7,10 +7,14 @@
     <%= @user.id %>
   </li>
 
+  <br>
+
   <li>
     <strong>Email:</strong>
     <%= @user.email %>
   </li>
+
+  <br>
 
   <li>
     <strong>Name:</strong>
@@ -19,5 +23,6 @@
 
 </ul>
 
-<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
-<span><%= link "Back", to: user_path(@conn, :index) %></span>
+<br>
+<span><%= button "Edit", to: user_path(@conn, :edit, @user), method: "get", class: "btn btn-primary" %></span>
+<span><%= link "Back", to: task_path(@conn, :index) %></span>

@@ -23,8 +23,9 @@
   <br>
   <li>
     <strong>Assigned to:</strong>
-    <%= if Tasktracker.Accounts.get_user_by_email(@task.assigned_to) do %>
-    <%= @task.assigned_to %>
+    <%= if @task.assigned_to do %>
+    <%  assigned_user = Tasktracker.Accounts.get_user(@task.assigned_to) %>
+    <%= assigned_user.email<>" ( "<>assigned_user.name<>" )" %>
     <% else %>
     <span class="error">Reassign (User Deleted)</span>
     <% end %>
@@ -46,6 +47,6 @@
 </ul>
 
 <%= if @current_user do %>
-<span><%= link "Edit", to: task_path(@conn, :edit, @task) %></span>
+<span><%= button "Edit", to: task_path(@conn, :edit, @task), method: "get", class: "btn btn-primary" %></span>
 <% end %>
 <span><%= link "Back", to: task_path(@conn, :index) %></span>
