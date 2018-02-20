@@ -4,7 +4,7 @@
 <% else %>
 <span><%= button "Login", to: page_path(@conn, :index), method: "get", class: "btn btn-primary" %></span>
 <% end %>
-<%= if @current_user.email=="admin@gmail.com" do %>
+<%= if !(@current_user==nil) and @current_user.email=="admin@gmail.com" do %>
 <span><%= button "View Users", to: user_path(@conn, :index), method: "get", class: "btn btn-primary" %></span>
 <% end %>
 <br><br>
